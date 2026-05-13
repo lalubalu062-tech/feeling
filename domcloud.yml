@@ -1,0 +1,11 @@
+features:
+  - docker
+services:
+  viewer:
+    image: feelingsurf/viewer:stable
+    restart: always
+    environment:
+      - ACCESS_TOKEN=ee73e8d92bbcfd652e9796b5da3e1be7
+    tmpfs:
+      - /tmp
+      - /dev/shm
