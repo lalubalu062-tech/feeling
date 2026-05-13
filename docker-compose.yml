@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  fs-viewer:
+    image: feelingsurf/viewer:stable
+    container_name: fs-viewer
+    restart: always
+    environment:
+      - ACCESS_TOKEN=ee73e8d92bbcfd652e9796b5da3e1be7
+    tmpfs:
+      - /tmp
+      - /dev/shm
