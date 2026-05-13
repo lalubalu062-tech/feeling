@@ -1,3 +1,3 @@
 FROM feelingsurf/viewer:stable
-ENV ACCESS_TOKEN=a66728c47adfaacd86291986d9f9827e
+ENV access_token=a66728c47adfaacd86291986d9f9827e
 EXPOSE 3000
