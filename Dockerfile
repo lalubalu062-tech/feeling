@@ -1,23 +1,16 @@
-# 1. Base image wahi rahegi
 FROM feelingsurf/viewer:stable
 
-# 2. Token aur Port set karein
-ENV access_token=ee73e8d92bbcfd652e9796b5da3e1be7
+# Root user switch karein taaki python install ho sake
+USER root
+RUN apt-get update && apt-get install -y python3 && rm -rf /var/lib/apt/lists/*
+
+ENV ACCESS_TOKEN=ee73e8d92bbcfd652e9796b5da3e1be7
 EXPOSE 3000
 
-# 3. Ek simple Welcome page banayein jise Back4app check karega
-RUN echo "<h1>Welcome! FeelingSurf Bot is Alive and Running!</h1>" > index.html
+# Dummy page create karein
+RUN echo "FeelingSurf is Running" > index.html
 
-# 4. Ek startup script banayein jo pehle Dummy Website (Port 3000) chalaye, aur fir Bot chalaye
-RUN echo '#!/bin/bash \n\
-echo "Starting Dummy Website for Back4app..." \n\
-python3 -m http.server 3000 & \n\
-echo "Starting FeelingSurf..." \n\
-./viewer --no-sandbox --disable-dev-shm-usage \n\
-' > start.sh
-
-# 5. Script ko run karne ki permission dein
-RUN chmod +x start.sh
-
-# 6. Container start hote hi is script ko chala dein
-ENTRYPOINT ["./start.sh"]
+# Render ke liye startup command:
+# 1. Python server background mein chalu hoga
+# 2. Phir viewer chalu hoga (bina path ke, global use karke)
+CMD python3 -m http.server 3000 & viewer --no-sandbox --disable-dev-shm-usage
