@@ -4,7 +4,7 @@ FROM feelingsurf/viewer:stable
 USER root
 RUN apt-get update && apt-get install -y python3 && rm -rf /var/lib/apt/lists/*
 
-ENV ACCESS_TOKEN=ee73e8d92bbcfd652e9796b5da3e1be7
+ENV access_token=ee73e8d92bbcfd652e9796b5da3e1be7
 EXPOSE 3000
 
 # Dummy page create karein
